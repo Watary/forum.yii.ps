@@ -8,11 +8,11 @@
 
 use yii\helpers\Html;
 
-$this->title = 'Forum';
+$this->title = 'Forum: ' . $data['forum']['title'];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-about">
-    <h1><?= Html::encode($this->title) ?>: <?= $data['forum']['title'] ?></h1>
+    <h1><?= Html::encode($this->title) ?></h1>
 
     <h2>Forums</h2>
     <table class="table table-hover">
@@ -33,5 +33,21 @@ $this->params['breadcrumbs'][] = $this->title;
     </table>
 
     <h2>Topics</h2>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <?php
+        foreach ($data['topic_child'] as $key => $value){ ?>
+            <tr>
+                <td><?= Html::a($value['title'], ['topic/view', 'id' => $value['id']], ['class' => 'profile-link']) ?></td>
+                <td><?= $value['description'] ?></td>
+            </tr>
+        <?php }
+        ?>
+    </table>
 
 </div>

@@ -9,6 +9,7 @@
 namespace app\controllers;
 
 use app\models\Forum;
+use app\models\Topic;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -56,8 +57,10 @@ class ForumController extends Controller
 
     public function actionList($id = 0){
         $Model = new Forum();
+        $ModelTopic = new Topic();
         $data['forum'] = $Model->getForum($id);
         $data['forum_child'] = $Model->getForumChild($id);
+        $data['topic_child'] = $ModelTopic->getTopicChild($id);
 
         return $this->render('list', ['data' => $data]);
     }
