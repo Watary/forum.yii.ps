@@ -9,6 +9,7 @@
 namespace app\controllers;
 
 use app\models\Topic;
+use app\models\Post;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -47,6 +48,16 @@ class TopicController extends Controller
 
     public function actionIndex(){
         return $this->render('index');
+    }
+
+    public function actionView($id){
+        $Model = new Topic();
+        $ModelPost = new Post();
+
+        $data['topic'] = $Model->getTopic($id);
+        $data['posts'] = $ModelPost->getPostList($id);
+
+        return $this->render('view', ['data' => $data]);
     }
 
 }
