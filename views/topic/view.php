@@ -14,6 +14,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <?= Html::a('+', ['post/create', 'id' => $data['topic']['id']], ['class' => 'btn btn-success btn-sm btn-block']) ?>
+
     <table class="table table-hover">
         <thead>
         <tr>

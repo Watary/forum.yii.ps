@@ -13,8 +13,20 @@ use yii\db\ActiveRecord;
 
 class Post extends ActiveRecord
 {
-
     const STATUS_ACTIVE = 1;
+
+    public static function tableName()
+    {
+        return 'post';
+    }
+
+    public function rules()
+    {
+        return [
+            [['text'], 'string'],
+            [['parent_id'], 'integer'],
+        ];
+    }
 
     public function getTopic($id){
         return Post::find()
