@@ -23,6 +23,7 @@ class Post extends ActiveRecord
     public function rules()
     {
         return [
+            [['text', 'parent_id'], 'required'],
             [['text'], 'string'],
             [['parent_id'], 'integer'],
         ];
