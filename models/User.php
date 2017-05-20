@@ -75,4 +75,8 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     {
         return $this->password === $password;
     }
+
+    public function create(){
+        return $this->save(false);
+    }
 }
