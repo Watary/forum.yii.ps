@@ -38,9 +38,9 @@ class SignupForm extends Model
             $user = new User();
 
             $user->username = $this->username;
-            $user->password = $this->password;
-            $user->authKey = 'authKey';
-            $user->accessToken = 'accessToken-' . $this->username;
+            $user->password = Yii::$app->getSecurity()->generatePasswordHash($this->password);
+            $user->authKey = Yii::$app->security->generateRandomString();
+            $user->accessToken = Yii::$app->security->generateRandomString();
 
             return $user->create();
         }

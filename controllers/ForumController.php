@@ -61,6 +61,7 @@ class ForumController extends Controller
         $data['forum'] = $Model->getForum($id);
         $data['forum_child'] = $Model->getForumChild($id);
         $data['topic_child'] = $ModelTopic->getTopicChild($id);
+        $data['id'] = Yii::$app->user->identity->accessToken;
 
         return $this->render('list', ['data' => $data]);
     }

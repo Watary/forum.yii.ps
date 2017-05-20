@@ -27,7 +27,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     public static function findIdentityByAccessToken($token, $type = null)
     {
         return User::find()
-            ->where(['token' => $token])
+            ->where(['accessToken' => $token])
             ->one();
     }
 
@@ -73,7 +73,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-        return $this->password === $password;
+        return Yii::$app->security->validatePassword($password, $this->password);
     }
 
     public function create(){
